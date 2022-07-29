@@ -26,7 +26,14 @@ public class AirplaneServiceImpl implements AirplaneService{
         Airplane airplane = null;
         if (a.isPresent())
         {
-            airplane = a.get();
+            if (a.get().status != false)
+            {
+                airplane = a.get();
+            }
+            else
+            {
+                System.out.println("Sorry. That airplane is not available");
+            }
         }
         else
         {
@@ -44,6 +51,26 @@ public class AirplaneServiceImpl implements AirplaneService{
     @Override
     public Airplane updateAirplane(Airplane airplane) {
         return this.airDao.save(airplane);
+    }
+
+    @Override
+    public String buyAirplane(int airID) {
+        Optional<Airplane> a = this.airDao.findById(airID);
+        if (a.isPresent())
+        {
+            if (a.get().status != false)
+            {
+                return "Congratulations! The airplane is now yours!";
+            }
+            else
+            {
+                return "Sorry. That airplane is not available";
+            }
+        }
+        else
+        {
+            return "Sorry. That ID doesn't exist.";
+        }
     }
 
     @Override

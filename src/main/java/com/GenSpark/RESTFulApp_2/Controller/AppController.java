@@ -49,6 +49,12 @@ public class AppController {
         return this.airServ.updateAirplane(plane);
     }
 
+    @PutMapping("/airplane/buy/{air}")
+    public String buyAirplane(@PathVariable String air)
+    {
+        return this.airServ.buyAirplane(Integer.parseInt(air));
+    }
+
     @DeleteMapping("/airplane/{air}")
     public String deleteAirplane(@PathVariable String air)
     {

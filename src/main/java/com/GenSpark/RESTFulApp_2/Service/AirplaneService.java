@@ -14,5 +14,7 @@ public interface AirplaneService {
 
     Airplane updateAirplane(Airplane airplane);
 
+    String buyAirplane(int airID);
+
     String deleteAirplaneByID(int airID);
 }
